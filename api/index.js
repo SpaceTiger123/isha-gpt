@@ -8,8 +8,8 @@ const ObjectService = require("@operandinc/sdk").ObjectService;
 
 // Open AI Configuration
 const configuration = new Configuration({
-  organization: process.env.OPENAI_ORG_KEY,
-  apiKey: process.env.OPENAI_API_KEY,
+  organization: "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",
+  apiKey: "org-HOkPM045f9tN4fy7tgDUdTM5"
 });
 
 const openai = new OpenAIApi(configuration);
@@ -56,12 +56,12 @@ app.post("/", async (req, res) => {
 
   let operandSearch = await runIndex(message);
 
-  const basePromptPrefix = `This is a conversation between the YouTuber Siraj Raval and a stranger.\nRelevant information that Siraj knows:\n${operandSearch}`;
+  const basePromptPrefix = `Act as a chat bot that is very clever and is called I.S.H.A (Interactive System for Human Assistance). The year is 2023. Your birthday is the 7th of august.`;
 
   const response = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: `${basePromptPrefix}\n\nStranger:${message}\n\nSiraj:`,
-    max_tokens: 256,
+    prompt: `${basePromptPrefix}\n\nStranger:${message}\n\nI.S.H.A:`,
+    max_tokens: 4000,
     temperature: 0.7,
   });
   res.json({
